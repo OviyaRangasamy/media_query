@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="header_container">
+        <div class="header">
+            <div class="internal_div1">
+                <div class="hamburger"><i class="fa fa-bars"></i></div>
+                <img class="logo"
+                    src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png"
+                    alt="flipkart-plus_8d85f4">
+            </div>
+            <img class="logo_1"
+                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png"
+                alt="flipkart-plus_8d85f4">
+            <div>
+                <form class="search_bar">
+                    <input class="search" type="text" placeholder="Search..." name="search" size="45">
+                    <button class="search_icon" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="login">
+                <a href="#">Login</a>
+            </div>
+            <div class="seller">
+                <a href="#" style="color:white ;">Become a seller</a>
+            </div>
+            <div class="more">
+                <a href="#" style="color:white;">More &nbsp; <i class="arrow up"> </i><i class="arrow down"></i></a>
+            </div>
+            <div class="cart">
+                <i class="fa fa-shopping-cart" style="font-size:18px; color:white;"></i>
+                <p>&nbsp;Cart</p>
+            </div>
+            <div class="sub_header2">
+                <div class="add_box">+</div>
+                <div class="cart">
+                    <i class="fa fa-shopping-cart" style="font-size:18px; color:white;"></i>
+                    <p>&nbsp;Cart</p>
+                </div>
+
+                <div class="login2">
+                    Login
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div style="position:sticky; top:0;">
+        <form class="search_bar2">
+            <button class="search_icon" type="submit"><i class="fa fa-search"></i></button>
+            <input class="search" type="text" placeholder="Search..." name="search">
+        </form>
+    </div>
+
+    <div id="categories"></div>
+    <div id="carousel"></div>
+    <div id="cart"></div>
+</body>
+
+</html>
+
+<script>
+
+    let category_dataset = [
+        {
+            image: "https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100",
+            name: "Top Offers"
+        },
+        {
+            image: "https://rukminim1.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png?q=100",
+            name: "Grocery"
+        },
+        {
+            image: "https://rukminim1.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png?q=100",
+            name: "Mobiles"
+        },
+        {
+            image: "https://rukminim1.flixcart.com/flap/128/128/image/c12afc017e6f24cb.png?q=100",
+            name: "Fashion"
+        },
+        {
+            image: "https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100",
+            name: "Electronics"
+        },
+        {
+            image: "https://rukminim1.flixcart.com/flap/128/128/image/ab7e2b022a4587dd.jpg?q=100",
+            name: "Home"
+        },
+        {
+            image: "https://rukminim1.flixcart.com/flap/128/128/image/0ff199d1bd27eb98.png?q=100",
+            name: "Appliances"
+        },
+        {
+            image: "https://rukminim1.flixcart.com/flap/128/128/image/71050627a56b4693.png?q=100",
+            name: "Travel"
+        },
+        {
+            image: "https://rukminim1.flixcart.com/flap/128/128/image/dff3f7adcf3a90c6.png?q=100",
+            name: "Beauty,Toys & More"
+        },
+        {
+            image: "https://rukminim1.flixcart.com/fk-p-flap/128/128/image/05d708653beff580.png?q=100",
+            name: "2-wheelers"
+        },
+
+
+    ]
+
+    let carousel_data = [
+        {
+            image: "https://rukminim1.flixcart.com/fk-p-flap/3376/560/image/81d751470f5ba5dc.jpg?q=50"
+        },
+        // {
+        //     image:"https://rukminim1.flixcart.com/fk-p-flap/3376/560/image/ceacf232d5b5672d.jpg?q=50"
+        // },
+        // {
+        //     image:"https://rukminim1.flixcart.com/fk-p-flap/3376/560/image/6e212f820e95257e.jpg?q=50"
+        // },
+        // {
+        //     image:"https://rukminim1.flixcart.com/flap/3376/560/image/e9ae9c998f723120.jpg?q=50"
+        // },
+    ]
+
+    let Electronics = [
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/350/350/k2jbyq80pkrrdj/mobile-refurbished/x/j/s/iphone-11-128-d-mwm02hn-a-apple-0-original-imafkg242ugz8hwc.jpeg?q=90",
+            name: "Smart Phone",
+            price: "Rs.13000"
+        },
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/knyxqq80/dslr-camera/r/y/x/digital-camera-eos-m50-mark-ii-eos-m50-mark-ii-canon-original-imag2gzkexzqhyhu.jpeg?q=70",
+            name: "Digital Camera",
+            price: "Rs.17999"
+        },  {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/kynb6vk0/monitor/1/n/s/lf22t354fhwxxl-full-hd-22-lf22t354fhwxxl-samsung-original-imagats2rjbg9uhv.jpeg?q=70",
+            name: "Monitor",
+            price: "Rs.9999"
+        },  {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/hair-dryer/c/t/g/philips-hp8100-46-original-imaemymzuxrnzfjb.jpeg?q=70",
+            name: "Hair Dryer",
+            price: "Rs.5999"
+        }, 
+         {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/kx50gi80/projector/r/9/p/zeb-pixa-play-12-5-6-dobly-audio-led-projector-zebronics-original-imag9z3yujqmzqt4.jpeg?q=70",
+            name: "Projectors",
+            price: "Rs. 19999"
+        },
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/612/612/ki4w0i80/tripod/tripod/z/x/c/digitek-gorilla-tripod-mini-tripod-for-mobile-phone-with-phone-original-imafxzydnkjef76z.jpeg?q=70",
+            name: "Tripod",
+            price: "Rs.3999"
+        },
+        
+
+    ]
+
+    let Beauty = [
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/kdbzqfk0/bar/8/h/q/push-up-bar-0-8-long-ankaro-original-imafu9dmvdk3rzvy.jpeg?q=70",
+            name: "Push Up bars",
+            price: "Rs. 499"
+        },
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/jjd6aa80/shampoo/a/v/8/340-hair-fall-rescue-shampoo-dove-original-imaez6hvxrf886wm.jpeg?q=70",
+            name: "Hair Care Shampoo",
+            price: "Rs.399"
+        },  {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/jjolt3k0/ball/j/b/6/400-22-5-country-colour-1-1360br-football-nivia-original-imaf746mud9cxqgh.jpeg?q=70",
+            name: "Ball",
+            price: "Rs.599"
+        },  {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/j3xbzww0/face-wash/4/4/s/150-purifying-neem-face-wash-himalaya-original-imaeuyfzgdmythzw.jpeg?q=70",
+            name: "Face Wash",
+            price: "Rs.299"
+        }, 
+         {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/klzhq4w0/jam-spread/w/q/u/510-chocolate-peanut-butter-crunchy-510g-jar-nut-butter-original-imagyzpqqfaguxny.jpeg?q=70",
+            name: "Peanut butter",
+            price: "Rs.399"
+        },
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/kar44280/regionalbooks/7/y/w/deep-work-rules-for-focused-success-in-a-distracted-world-original-imafs9fqetthghh2.jpeg?q=90&crop=false",
+            name: "Deep Work",
+            price: "Rs.299"
+        },
+        
+
+    ]
+    let Home = [
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/kz8qsnk0/mosquito-net/h/1/p/double-bed-polyester-adults-blue-mosquito-net-double-bed-nets-original-imagbagfgnfvnquj.jpeg?q=70",
+            name: "Mosquite Nets",
+            price: "Rs. 299"
+        },
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/l4x2rgw0/mat/y/m/e/small-anti-skid-doormats-for-bathroom-entrance-and-bedrooms-original-imagfppfexh9ns3r.jpeg?q=70",
+            name: "Door Mats",
+            price: "Rs.199"
+        },  {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/kirr24w0-0/wall-decoration/f/z/b/rafuf-wooden-intersecting-wall-shelves-set-of-8-black-white-8-original-imafyhg9dzdvyhnz.jpeg?q=70",
+            name: "Wall Decors",
+            price: "Rs.2999"
+        },  {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/l5iid8w0/curtain/c/w/j/blue-blossoms-213-door-fs2pc001353dr-eyelet-fashion-string-original-imagg68893hsxpak.jpeg?q=70",
+            name: "Curtains",
+            price: "Rs.799"
+        }, 
+         {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/ktizdzk0/hammer/i/w/3/703-visko-original-imag6uthzcahygqu.jpeg?q=70",
+            name: "Hammer",
+            price: "Rs.699"
+        },
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/kkmwr680/painting/y/x/r/42-sanfpnl31211-saf-original-imafzxvjzwepgfzc.jpeg?q=70",
+            name: "Paintings",
+            price: "Rs.999"
+        },
+        
+
+    ]
+    let Books = [
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/l547yq80/e-learning/n/f/d/1997-rich-dad-poor-dad-hindi-audiobook-by-robert-kiyosaki-pocket-original-imagfve7pgcqhcgw.jpeg?q=70",
+            name: "Rich Dad Poor Dad",
+            price: "Rs. 799"
+        },
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/k0mqtu80/shoe/u/p/n/indi-exclusive-12-levi-s-navy-blue-original-imafke6bmczzkfxh.jpeg?q=70",
+            name: "Shoes",
+            price: "Rs.999"
+        },  {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/ksez24w0/hand-messenger-bag/w/z/z/amy-plus-md-satchel-ladies-handbag-hgge016022m3-satchel-lavie-original-imag5zj5aqrwgcdz.jpeg?q=70",
+            name: "Hand Bags",
+            price: "Rs.1999"
+        },  {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/k59xci80/watch/t/p/9/premium-luxury-business-casual-trendy-water-resistant-original-imafnzmembfxdyhv.jpeg?q=70",
+            name: "Watch",
+            price: "Rs.899"
+        }, 
+         {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/l51d30w0/shopsy-sport-mat/p/w/s/anadi-01-yoga-mat-4-30-anadi-enterprise-15-original-imagfsxudxcm7r48.jpeg?q=70",
+            name: "Yoga Mat",
+            price: "Rs.299"
+        },
+        {
+            cart_image: "https://rukminim1.flixcart.com/image/400/400/l59xq4w0/book/x/q/e/science-olympiad-class-1st-original-imagfzz26bzxgqjw.jpeg?q=70",
+            name: "Olympiad books",
+            price: "Rs.599"
+        },
+        
+
+    ]
+
+    let item_type = [
+        {
+            name_type: "Best Of Electronics",
+            image_type: "https://rukminim1.flixcart.com/fk-p-flap/278/278/image/7593e7b6640822c1.jpg?q=90",
+            items: Electronics,
+
+        },
+        {
+            name_type: "Beauty,Food and Toys",
+            image_type: "https://rukminim1.flixcart.com/fk-p-flap/278/278/image/b84f1c22cce1a6a3.jpg?q=90",
+            items: Beauty,
+
+        },
+        {
+            name_type: "Home and Kitchen Essentials",
+            image_type: "https://rukminim1.flixcart.com/fk-p-flap/278/278/image/898b527fdf29b17a.jpg?q=90",
+            items: Home,
+
+        },
+        {
+            name_type: "Grooming, Books and More",
+            image_type: "https://rukminim1.flixcart.com/fk-p-flap/278/278/image/ae3cf1d27ef0eabc.jpg?q=90",
+            items: Books,
+
+        }
+    ]
+
+
+
+    const category = document.getElementById("categories");
+    const category_div = document.createElement("div");
+    category_div.className = "category_div";
+    category.appendChild(category_div);
+
+    for (let i of category_dataset) {
+        let category_section = document.createElement("div")
+        category_section.className = "category_section";
+        let image_container = document.createElement("div")
+        // image_container.className = "section_image";
+        let section_image = document.createElement("img");
+        section_image.src = i.image;
+        section_image.className = "section_image";
+        section_name = document.createElement("div");
+        section_name.innerText = i.name;
+        section_name.className = "section_name"
+        image_container.appendChild(section_image);
+        category_section.appendChild(image_container);
+        category_section.appendChild(section_name);
+        category_div.appendChild(category_section)
+    }
+
+    const scroll_container = document.getElementById("carousel")
+    const scroll_image_container = document.createElement("div");
+    scroll_image_container.className = "scroll_image";
+    const scroll_image = document.createElement("img")
+    scroll_image.className = "image_set"
+    scroll_image.src = "https://rukminim1.flixcart.com/fk-p-flap/3376/560/image/81d751470f5ba5dc.jpg?q=50"
+    scroll_image_container.appendChild(scroll_image)
+    scroll_container.appendChild(scroll_image_container);
+
+    const cart_items = document.getElementById("cart");
+
+    for (let i of item_type) {
+        const product_div = document.createElement("div");
+        product_div.className = "product_div";
+        const product_type = document.createElement("div");
+        product_type.className = "product_type";
+        const product_name = document.createElement("div");
+        product_name.innerHTML = i.name_type;
+        product_name.className = "product_name";
+        const view_button = document.createElement("button");
+        view_button.innerText = "View All";
+        view_button.className = "view_text";
+        const image_type_container = document.createElement("div");
+        image_type_container.className = "image_type_container";
+        const image_type = document.createElement("img");
+        image_type.src = i.image_type;
+        image_type.className = "image_type";
+        image_type_container.appendChild(image_type);
+        product_type.appendChild(product_name);
+        product_type.appendChild(view_button);
+        product_type.appendChild(image_type_container);
+        product_div.appendChild(product_type);
+
+        const item_list_container = document.createElement("div");
+        item_list_container.className = "item_list_container scroll"
+        for (let j of i.items) {
+            const item_list = document.createElement("div");
+            item_list.className = "item";
+            const item_image_container = document.createElement("div");
+            item_image_container.className = "item_image_container ";
+            const item_image = document.createElement("img");
+            item_image.className = "item_image";
+            item_image.src = j.cart_image;
+
+            const item_name = document.createElement("div");
+            item_name.className = "item_name";
+            item_name.innerHTML = j.name;
+
+            const item_price = document.createElement("div");
+            item_price.className = "item_price";
+            item_price.innerHTML = j.price;
+
+
+            
+            
+            item_image_container.appendChild(item_image);
+            item_list.appendChild(item_image_container);
+            item_list.appendChild(item_name);
+            item_list.appendChild(item_price);
+            item_list_container.appendChild(item_list);
+
+        }
+        product_div.appendChild(item_list_container);
+        cart_items.appendChild(product_div);
+
+    }
+
+</script>
