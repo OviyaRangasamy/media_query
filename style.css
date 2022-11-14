@@ -341,11 +341,11 @@ a {
     width: 1px;
 }
 
-.item_image:hover{
+/* .item_image:hover{
    width: 200px;
    transform: scale(1.05);
     
-}
+} */
 
 @media only screen and (max-width: 768px) {
     .header {
